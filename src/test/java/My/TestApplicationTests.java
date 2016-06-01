@@ -42,11 +42,5 @@ public class TestApplicationTests {
 		List<Contact> filterTest = contactService.regExFilterContacts(testList, "");
 		Assert.isTrue(size.equals(filterTest.size()));
 	}
-
-	@Test
-	public void testForNullableCollection()
-	{
-		List<Contact> filterTest = contactService.regExFilterContacts(testList, "Tomcitty");
-		Assert.isNull(filterTest);
-	}
+	
 }
