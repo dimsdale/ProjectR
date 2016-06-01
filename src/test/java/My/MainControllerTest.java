@@ -33,4 +33,22 @@ public class MainControllerTest extends ControllerTest {
         Assert.assertEquals("Failure!", 200, code);
         Assert.assertTrue("Failure - must have Content", content.trim().length() > 0);
     }
+    @Test
+    public void getFilterListContactsTest() throws Exception {
+        String urifilter = "/hello/contacts?nameFilter=^A .$";
+        String uri = "/hello/contacts";
+        MvcResult resultFilter = mvc.perform(MockMvcRequestBuilders.get(urifilter).accept(MediaType.APPLICATION_JSON)).andReturn();
+        String contentFilter = resultFilter.getResponse().getContentAsString();
+        int codeFilter = resultFilter.getResponse().getStatus();
+        Assert.assertEquals("Failure!", 200, codeFilter);
+        Assert.assertTrue("Failure - must have Content", contentFilter.trim().length() > 0);
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        String content = resultFilter.getResponse().getContentAsString();
+        int code = result.getResponse().getStatus();
+        Assert.assertEquals("Failure!", 200, code);
+        Assert.assertTrue("Failure - must have Content", content.trim().length() > 0);
+        Assert.assertNotEquals(resultFilter, result);
+
+    }
+    String notfounrUri = "/hello/contacts?nameFilter=^.*[aeiy].*$";
 }
