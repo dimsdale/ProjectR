@@ -30,8 +30,11 @@ public class MainController {
     public ResponseEntity<Collection<Contact>> getContacts(@RequestParam(value = "nameFilter", defaultValue = "") String name)
     {
         log.info("Filter String is " + name);
-        List<Contact> allContacts = contactService.getAllContacts();
-        List<Contact> filterContacts = contactService.regExFilterContacts(allContacts, name);
+        List<Contact> filterContacts = contactService.regExFilterContacts(name);
+        if(filterContacts==null){
+            log.info("Contacts not found");
+            return new ResponseEntity<Collection<Contact>>(filterContacts, HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<Collection<Contact>>(filterContacts, HttpStatus.OK);
     }
 }

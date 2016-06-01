@@ -1,9 +1,3 @@
-CREATE SCHEMA `contactschema` ;
-
-CREATE TABLE `contactschema`.`contacts` (
-  `id` BIGINT(64) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`));
 
 INSERT INTO `contactschema`.`contacts` (`id`, `name`) VALUES ('1', 'Dmitriy');
 INSERT INTO `contactschema`.`contacts` (`id`, `name`) VALUES ('2', 'Aleksey');

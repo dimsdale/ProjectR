@@ -9,5 +9,7 @@ public interface ContactService {
 
     public List<Contact> getAllContacts();
 
-    public List<Contact> regExFilterContacts (List<Contact> list,String filter);
+    public List<Contact> regExFilterContacts (String filter);
+
+    public void evictCache();
 }
