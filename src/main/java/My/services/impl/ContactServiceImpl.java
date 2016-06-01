@@ -33,16 +33,17 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> regExFilterContacts(List<Contact> contacts, String filter) {
+    public List<Contact> regExFilterContacts(String filter) {
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher;
+        List<Contact> allContacts = getAllContacts();
         if (filter.equals(""))
         {
-            return contacts;
+            return allContacts;
         }
         logger.info("Start filtering...");
         List<Contact> filterListContact = new ArrayList<Contact>();
-        for (Contact oneContact: contacts)
+        for (Contact oneContact: allContacts)
         {
             matcher = pattern.matcher(oneContact.getName());
             if (!matcher.find())
@@ -51,5 +52,11 @@ public class ContactServiceImpl implements ContactService {
             }
         }
         return filterListContact;
+    }
+
+    @Override
+    @CacheEvict(value = "contacts", allEntries = true)
+    public void evictCache() {
+        logger.info("Evict Cache");
     }
 }

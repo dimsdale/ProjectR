@@ -1,5 +1,3 @@
-CREATE SCHEMA `contactschema` ;
-
 drop table if exists `contacts`;
 
 CREATE TABLE `contactschema`.`contacts` (

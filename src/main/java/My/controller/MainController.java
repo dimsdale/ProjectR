@@ -29,9 +29,8 @@ public class MainController {
     @RequestMapping(value = "/hello/contacts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Contact>> getContacts(@RequestParam(value = "nameFilter", defaultValue = "") String name)
     {
-        List<Contact> allContacts = contactService.getAllContacts();
         log.info("Filter String is " + name);
-        List<Contact> filterContacts = contactService.regExFilterContacts(allContacts, name);
+        List<Contact> filterContacts = contactService.regExFilterContacts(name);
         Integer filterContactSize = filterContacts.size();
         if(filterContactSize.equals(0)){
             log.info("Contacts not found");
