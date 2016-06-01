@@ -33,17 +33,16 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> regExFilterContacts(String filter) {
+    public List<Contact> regExFilterContacts(List<Contact> contacts, String filter) {
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher;
-        List<Contact> allContacts = getAllContacts();
         if (filter.equals(""))
         {
-            return allContacts;
+            return contacts;
         }
         logger.info("Start filtering...");
         List<Contact> filterListContact = new ArrayList<Contact>();
-        for (Contact oneContact: allContacts)
+        for (Contact oneContact: contacts)
         {
             matcher = pattern.matcher(oneContact.getName());
             if (!matcher.find())

@@ -39,8 +39,9 @@ public class TestApplicationTests {
 	@Test
 	public void testBothSizeCollections() {
 		Integer size = testList.size();
-		List<Contact> filterTest = contactService.regExFilterContacts("");
+		List<Contact> filterTest = contactService.regExFilterContacts(testList, "");
 		Assert.isTrue(size.equals(filterTest.size()));
 	}
+
 
 }
