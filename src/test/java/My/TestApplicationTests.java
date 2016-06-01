@@ -42,5 +42,5 @@ public class TestApplicationTests {
 		List<Contact> filterTest = contactService.regExFilterContacts(testList, "");
 		Assert.isTrue(size.equals(filterTest.size()));
 	}
-	
+
 }
