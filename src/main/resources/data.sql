@@ -1,4 +1,3 @@
-
 INSERT INTO `contactschema`.`contacts` (`id`, `name`) VALUES ('1', 'Dmitriy');
 INSERT INTO `contactschema`.`contacts` (`id`, `name`) VALUES ('2', 'Aleksey');
 INSERT INTO `contactschema`.`contacts` (`id`, `name`) VALUES ('3', 'Zina');
