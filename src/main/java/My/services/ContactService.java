@@ -11,5 +11,4 @@ public interface ContactService {
 
     public List<Contact> regExFilterContacts (List<Contact> contacts,String filter);
 
-    public void evictCache();
 }

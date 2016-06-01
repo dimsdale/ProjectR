@@ -52,10 +52,4 @@ public class ContactServiceImpl implements ContactService {
         }
         return filterListContact;
     }
-
-    @Override
-    @CacheEvict(value = "contacts", allEntries = true)
-    public void evictCache() {
-        logger.info("Evict Cache");
-    }
 }
