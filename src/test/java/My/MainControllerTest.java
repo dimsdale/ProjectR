@@ -34,7 +34,7 @@ public class MainControllerTest {
     private MockMvc mvc;
 
     @Before
-    private void setMvc(){
+    public void setMvc(){
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
         contactService.evictCache();
     }
