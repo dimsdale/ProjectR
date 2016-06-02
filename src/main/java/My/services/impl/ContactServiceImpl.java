@@ -37,17 +37,14 @@ public class ContactServiceImpl implements ContactService {
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher;
         List<Contact> allContacts = getAllContacts();
-        if (filter.equals("") || filter.equals(null))
-        {
+        if (filter.equals("") || filter.equals(null)) {
             return allContacts;
         }
         logger.info("Start filtering...");
         List<Contact> filterListContact = new ArrayList<Contact>();
-        for (Contact oneContact: allContacts)
-        {
+        for (Contact oneContact : allContacts) {
             matcher = pattern.matcher(oneContact.getName());
-            if (!matcher.find())
-            {
+            if (!matcher.find()) {
                 filterListContact.add(oneContact);
             }
         }

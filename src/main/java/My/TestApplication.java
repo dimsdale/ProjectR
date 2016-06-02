@@ -10,7 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 public class TestApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(new Class<?>[]{TestApplication.class, WebAppConfig.class}, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(new Class<?>[]{TestApplication.class, WebAppConfig.class}, args);
+    }
 }

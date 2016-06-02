@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: Test
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Surger
-Implementation-Vendor-Id: My
-Created-By: IntelliJ IDEA
-Build-Jdk: 1.8.0_77
-Main-Class: ${start-class}
-

@@ -22,15 +22,14 @@ public class MainController {
     public static final Logger log = Logger.getLogger(MainController.class.getName());
 
     @Autowired
-    private  ContactService contactService;
+    private ContactService contactService;
 
     @RequestMapping(value = "/hello/contacts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Contact>> getContacts(@RequestParam(value = "nameFilter", defaultValue = "") String name)
-    {
+    public ResponseEntity<Collection<Contact>> getContacts(@RequestParam(value = "nameFilter", defaultValue = "") String name) {
         log.info("Filter String is " + name);
         List<Contact> filterContacts = contactService.regExFilterContacts(name);
         Integer filterContactSize = filterContacts.size();
-        if(filterContactSize.equals(0)){
+        if (filterContactSize.equals(0)) {
             log.info("For you query contacts not found");
             return new ResponseEntity<Collection<Contact>>(HttpStatus.NOT_FOUND);
         }

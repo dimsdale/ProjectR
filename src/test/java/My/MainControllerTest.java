@@ -1,9 +1,6 @@
 package My;
 
-import My.model.Contact;
 import My.services.ContactService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
@@ -34,20 +30,9 @@ public class MainControllerTest {
     private MockMvc mvc;
 
     @Before
-    public void setMvc(){
+    public void setMvc() {
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
         contactService.evictCache();
-    }
-
-    private String toJson(Contact obj) throws JsonProcessingException
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(obj);
-    }
-
-    private   <T> T mapFromJson(String json, Class<T> tClass) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return  mapper.readValue(json, tClass);
     }
 
     @Autowired
@@ -62,6 +47,7 @@ public class MainControllerTest {
         Assert.assertEquals("Failure!", 200, code);
         Assert.assertTrue("Failure - must have Content", content.trim().length() > 0);
     }
+
     @Test
     public void getFilterListContactsTest() throws Exception {
         String urifilter = "/hello/contacts?nameFilter=^A .$";
@@ -79,5 +65,16 @@ public class MainControllerTest {
         Assert.assertNotEquals(resultFilter, result);
 
     }
-    String notfounrUri = "/hello/contacts?nameFilter=^.*[aeiy].*$";
+
+    @Test
+    public void notFoundContactsTest() throws Exception {
+        String notFoundUri = "/hello/contacts?nameFilter=^.*[aeiy].*$";
+        MvcResult resultFilter = mvc.perform(MockMvcRequestBuilders.get(notFoundUri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        String content = resultFilter.getResponse().getContentAsString();
+        int status = resultFilter.getResponse().getStatus();
+        Assert.assertEquals("failure - expected HTTP status 404", 404, status);
+        Assert.assertTrue("failure - expected HTTP response body to be empty",
+                content.trim().length() == 0);
+    }
+
 }
