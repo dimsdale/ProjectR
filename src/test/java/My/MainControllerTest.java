@@ -1,28 +1,57 @@
 package My;
 
+import My.model.Contact;
 import My.services.ContactService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = TestApplication.class)
+@WebAppConfiguration
 @Transactional
-public class MainControllerTest extends ControllerTest {
+public class MainControllerTest {
+
+    @Autowired
+    private WebApplicationContext context;
+
+    private MockMvc mvc;
+
+    @Before
+    private void setMvc(){
+        mvc = MockMvcBuilders.webAppContextSetup(context).build();
+        contactService.evictCache();
+    }
+
+    private String toJson(Contact obj) throws JsonProcessingException
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(obj);
+    }
+
+    private   <T> T mapFromJson(String json, Class<T> tClass) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return  mapper.readValue(json, tClass);
+    }
 
     @Autowired
     private ContactService contactService;
-
-    @Before
-    public void setMvc(){
-        super.setMvc();
-        contactService.evictCache();
-    }
 
     @Test
     public void getListContactTest() throws Exception {
