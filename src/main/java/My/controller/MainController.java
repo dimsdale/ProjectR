@@ -3,7 +3,6 @@ package My.controller;
 import My.model.Contact;
 import My.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,6 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping
-@EnableCaching
 public class MainController {
 
     public static final Logger log = Logger.getLogger(MainController.class.getName());
@@ -34,7 +32,7 @@ public class MainController {
         Integer filterContactSize = filterContacts.size();
         if(filterContactSize.equals(0)){
             log.info("For you query contacts not found");
-            return new ResponseEntity<Collection<Contact>>(filterContacts, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Collection<Contact>>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Collection<Contact>>(filterContacts, HttpStatus.OK);
     }

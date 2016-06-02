@@ -37,7 +37,7 @@ public class ContactServiceImpl implements ContactService {
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher;
         List<Contact> allContacts = getAllContacts();
-        if (filter.equals(""))
+        if (filter.equals("") || filter.equals(null))
         {
             return allContacts;
         }
