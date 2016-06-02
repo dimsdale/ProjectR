@@ -33,7 +33,7 @@ public class MainController {
         List<Contact> filterContacts = contactService.regExFilterContacts(name);
         Integer filterContactSize = filterContacts.size();
         if(filterContactSize.equals(0)){
-            log.info("Contacts not found");
+            log.info("For you query contacts not found");
             return new ResponseEntity<Collection<Contact>>(filterContacts, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Collection<Contact>>(filterContacts, HttpStatus.OK);
