@@ -10,8 +10,8 @@
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
-        <introspection-state-number>627</introspection-state-number>
-        <introspection-timestamp>2016-06-02.12:57:38.431</introspection-timestamp>
+        <introspection-state-number>815</introspection-state-number>
+        <introspection-timestamp>2016-06-02.21:24:15.351</introspection-timestamp>
       </schema>
       <schema id="3" parent="1" name="pg_catalog">
         <object-id>11</object-id>
@@ -20,12 +20,12 @@
         <introspection-timestamp>2016-06-02.12:57:39.120</introspection-timestamp>
       </schema>
       <sequence id="4" parent="2" name="contacts_id_seq">
-        <object-id>24601</object-id>
-        <state-number>627</state-number>
+        <object-id>24725</object-id>
+        <state-number>815</state-number>
       </sequence>
       <table id="5" parent="2" name="contacts">
-        <object-id>24603</object-id>
-        <state-number>627</state-number>
+        <object-id>24727</object-id>
+        <state-number>815</state-number>
       </table>
       <table id="6" parent="3" name="pg_aggregate">
         <object-id>2600</object-id>
@@ -20773,17 +20773,17 @@
         <bind-function>bpchariclike(char,text)</bind-function>
       </operator>
       <column id="3701" parent="5" name="id">
-        <state-number>627</state-number>
+        <state-number>815</state-number>
         <mandatory>1</mandatory>
         <data-type>bigint</data-type>
         <default-expression>nextval(&apos;contacts_id_seq&apos;::regclass)</default-expression>
       </column>
       <column id="3702" parent="5" name="name">
-        <state-number>627</state-number>
+        <state-number>815</state-number>
         <data-type>varchar(255)</data-type>
       </column>
       <index id="3703" parent="5" name="contacts_pkey">
-        <object-id>24607</object-id>
+        <object-id>24731</object-id>
         <columns>id</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>

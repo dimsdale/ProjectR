@@ -1,5 +1,6 @@
-package My;
+package My.controller;
 
+import My.TestApplication;
 import My.services.ContactService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -68,7 +69,7 @@ public class MainControllerTest {
 
     @Test
     public void notFoundContactsTest() throws Exception {
-        String notFoundUri = "/hello/contacts?nameFilter=^.*[aeiy].*$";
+        String notFoundUri = "/hello/contacts?nameFilter=^.*[a-z].*$";
         MvcResult resultFilter = mvc.perform(MockMvcRequestBuilders.get(notFoundUri).accept(MediaType.APPLICATION_JSON)).andReturn();
         String content = resultFilter.getResponse().getContentAsString();
         int status = resultFilter.getResponse().getStatus();
