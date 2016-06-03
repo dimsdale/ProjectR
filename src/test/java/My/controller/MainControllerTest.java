@@ -63,7 +63,7 @@ public class MainControllerTest {
         int code = result.getResponse().getStatus();
         Assert.assertEquals("Failure!", 200, code);
         Assert.assertTrue("Failure - must have Content", content.trim().length() > 0);
-        Assert.assertNotEquals(resultFilter, result);
+        Assert.assertNotEquals(content.length(), contentFilter.length());
 
     }
 

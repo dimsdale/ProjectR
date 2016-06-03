@@ -48,11 +48,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
-            <scope>runtime</scope>
+            <version>9.4-1201-jdbc41</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -63,8 +63,6 @@
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
