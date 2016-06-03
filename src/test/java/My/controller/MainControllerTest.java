@@ -51,7 +51,7 @@ public class MainControllerTest {
 
     @Test
     public void getFilterListContactsTest() throws Exception {
-        String urifilter = "/hello/contacts?nameFilter=^.[ae] .$";
+        String urifilter = "/hello/contacts?nameFilter=A";
         String uri = "/hello/contacts";
         MvcResult resultFilter = mvc.perform(MockMvcRequestBuilders.get(urifilter).accept(MediaType.APPLICATION_JSON)).andReturn();
         String contentFilter = resultFilter.getResponse().getContentAsString();
