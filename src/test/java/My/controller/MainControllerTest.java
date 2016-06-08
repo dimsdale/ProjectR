@@ -1,7 +1,6 @@
 package My.controller;
 
 import My.TestApplication;
-import My.services.ContactService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,11 +32,7 @@ public class MainControllerTest {
     @Before
     public void setMvc() {
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
-        contactService.evictCache();
     }
-
-    @Autowired
-    private ContactService contactService;
 
     @Test
     public void getListContactTest() throws Exception {

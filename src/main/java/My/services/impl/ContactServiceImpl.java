@@ -5,7 +5,6 @@ import My.model.Contact;
 import My.repositories.ContactRepository;
 import My.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +18,14 @@ import java.util.regex.Pattern;
 @Service
 public class ContactServiceImpl implements ContactService {
 
-    Logger logger = Logger.getLogger(ContactServiceImpl.class.getName());
+    public static final Logger logger = Logger.getLogger(ContactServiceImpl.class.getName());
 
     @Autowired
     private ContactRepository contactRepository;
 
     @Override
-    @Cacheable("contacts")
     @Transactional
+    @Cacheable(value = "contacts")
     public List<Contact> getAllContacts() {
         logger.info("Getting contacts from DB");
         return contactRepository.findAll();
@@ -51,9 +50,4 @@ public class ContactServiceImpl implements ContactService {
         return filterListContact;
     }
 
-    @Override
-    @CacheEvict(value = "contacts", allEntries = true)
-    public void evictCache() {
-        logger.info("Evict Cache");
-    }
 }

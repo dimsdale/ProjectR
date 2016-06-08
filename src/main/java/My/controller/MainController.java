@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping
 public class MainController {
 
     public static final Logger log = Logger.getLogger(MainController.class.getName());
