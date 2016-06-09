@@ -2,16 +2,24 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
         updateCheck="true" monitoring="autodetect" dynamicConfig="true">
+        <diskStore path="D:\"/>
     <defaultCache
-            maxElementsInMemory="50"
-            eternal="false"
-            overflowToDisk="false"
-            memoryStoreEvictionPolicy="LFU" />
+            maxElementsInMemory="10000"
+            eternal="true"
+            timeToIdleSeconds="100"
+            timeToLiveSeconds="180"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"
+            diskPersistent="true"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU" />
     <cache name="contacts"
            maxElementsInMemory="10000000"
-           eternal="false"
+           eternal="true"
            overflowToDisk="true"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="10"
            timeToIdleSeconds="100"
            timeToLiveSeconds="180"
-           transactionalMode="off"/>
+           memoryStoreEvictionPolicy="LFU"/>
 </ehcache>

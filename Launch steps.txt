@@ -5,5 +5,7 @@
 В разделе Maven Projects на боковой панели перейти в подраздел Plugins->spring-boot, выбрать
 подменю spring-boot:run  и нажать зелёную стрелку в данном разделе. Приложение развернется на порту 8080.
 
+https://docs.google.com/document/d/1ATZPo8b6a6pmYyTz9RXFopjS1vr7BHvb05NAvqhdF3g/edit
+
 
 

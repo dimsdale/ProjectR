@@ -25,7 +25,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     @Transactional
-    @Cacheable(value = "contacts")
+    @Cacheable(value = "contacts", key = "#root.methodName")
     public List<Contact> getAllContacts() {
         logger.info("Getting contacts from DB");
         return contactRepository.findAll();
