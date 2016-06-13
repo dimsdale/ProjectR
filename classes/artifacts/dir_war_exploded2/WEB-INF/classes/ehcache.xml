@@ -4,22 +4,22 @@
         updateCheck="true" monitoring="autodetect" dynamicConfig="true">
         <diskStore path="D:\"/>
     <defaultCache
-            maxElementsInMemory="10000"
-            eternal="true"
+            maxElementsInMemory="1"
+            eternal="false"
             timeToIdleSeconds="100"
             timeToLiveSeconds="180"
             overflowToDisk="true"
-            maxElementsOnDisk="10000000"
+            maxElementsOnDisk="1"
             diskPersistent="true"
-            diskExpiryThreadIntervalSeconds="120"
-            memoryStoreEvictionPolicy="LRU" />
+            diskExpiryThreadIntervalSeconds="120"/>
+
     <cache name="contacts"
-           maxElementsInMemory="10000000"
-           eternal="true"
-           overflowToDisk="true"
-           diskPersistent="true"
-           diskExpiryThreadIntervalSeconds="10"
+           maxElementsInMemory="1"
+           eternal="false"
            timeToIdleSeconds="100"
-           timeToLiveSeconds="180"
-           memoryStoreEvictionPolicy="LFU"/>
+           timeToLiveSeconds="180">
+
+    </cache>
+
+
 </ehcache>

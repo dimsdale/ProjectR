@@ -73,4 +73,15 @@ public class MainControllerTest {
                 content.trim().length() == 0);
     }
 
+    @Test
+    public void wrongRegularExpressionTest() throws Exception {
+        String wrongRegExpUri = "/hello/contacts?nameFilter=^.*(a-z].*$";
+        MvcResult resultFilter = mvc.perform(MockMvcRequestBuilders.get(wrongRegExpUri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        String content = resultFilter.getResponse().getContentAsString();
+        int status = resultFilter.getResponse().getStatus();
+        Assert.assertEquals("failure - expected HTTP status 404", 400, status);
+        Assert.assertTrue("failure - expected HTTP response body to be empty",
+                content.trim().length() == 0);
+    }
+
 }

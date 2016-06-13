@@ -14,33 +14,35 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
-@Service
+@Service("contactService")
 public class ContactServiceImpl implements ContactService {
 
-    public static final Logger logger = Logger.getLogger(ContactServiceImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(ContactServiceImpl.class.getName());
 
     @Autowired
     private ContactRepository contactRepository;
 
     @Override
     @Transactional
-    @Cacheable(value = "contacts", key = "#root.methodName")
+    @Cacheable(value = "contacts", key = "#contact.getId")
     public List<Contact> getAllContacts() {
         logger.info("Getting contacts from DB");
         return contactRepository.findAll();
     }
 
     @Override
-    public List<Contact> regExFilterContacts(String filter) {
+    public List<Contact> regExFilterContacts(String filter) throws PatternSyntaxException {
+        List<Contact> filterListContact = new ArrayList<Contact>();
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher;
         List<Contact> allContacts = getAllContacts();
         if (filter.equals("") || filter.equals(null)) {
             return allContacts;
         }
+
         logger.info("Start filtering...");
-        List<Contact> filterListContact = new ArrayList<Contact>();
         for (Contact oneContact : allContacts) {
             matcher = pattern.matcher(oneContact.getName());
             if (!matcher.find()) {
@@ -49,5 +51,7 @@ public class ContactServiceImpl implements ContactService {
         }
         return filterListContact;
     }
+
+
 
 }

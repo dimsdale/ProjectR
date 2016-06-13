@@ -1,10 +1,15 @@
 package My.model;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "contacts")
-public class Contact {
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Contact implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
